@@ -3,7 +3,7 @@ using CheeseMVC.Models;
 using System.Collections.Generic;
 using CheeseMVC.ViewModels;
 using CheeseMVC.Data;
-using System.Linq;
+using System.Linq; 
 
 namespace CheeseMVC.Controllers
 {
@@ -33,20 +33,20 @@ namespace CheeseMVC.Controllers
         [HttpPost]
         public IActionResult Add(AddCategoryViewModel addCategoryViewModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(addCategoryViewModel);
+                //Add new category to my existing categories
+                CheeseCategory newCategory = new CheeseCategory
+                {
+                    Name = addCategoryViewModel.Name
+                };
+
+                context.Categories.Add(newCategory);
+                context.SaveChanges();
+
+                return Redirect("/Category");
             }
-            //Add new category to my existing categories
-            CheeseCategory newCategory = new CheeseCategory
-            {
-                Name = addCategoryViewModel.Name
-            };
-
-            context.Categories.Add(newCategory);
-            context.SaveChanges();
-
-            return Redirect("/Category");
+            return View(addCategoryViewModel);
         }
     }
 }
