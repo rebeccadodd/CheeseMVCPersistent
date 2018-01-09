@@ -97,8 +97,8 @@ namespace CheeseMVC.Controllers
                 {
                     CheeseMenu newCheeseMenu = new CheeseMenu
                     {
-                        Menu = context.Menus.Single(m => m.ID == MenuID),
-                        Cheese = context.Cheeses.Single(c => c.ID == CheeseID)
+                        Menu = context.Menus.Single(m => m.ID == menuID),
+                        Cheese = context.Cheeses.Single(c => c.ID == cheeseID)
                     };
 
                     context.CheeseMenus.Add(newCheeseMenu);
